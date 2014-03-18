@@ -150,6 +150,7 @@ parse = (input) ->
         value: right
     else if lookahead and lookahead.type is "CALL"
       match "CALL"
+      match "ID"
       right = lookahead.value
       result =
         type: "CALL"
