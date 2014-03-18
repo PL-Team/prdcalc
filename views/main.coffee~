@@ -157,6 +157,7 @@ parse = (input) ->
       result =
         type: "CALL"
         value: right
+      match ";"
     else if lookahead and lookahead.type is "IF"
       match "IF"
       left = condition()
