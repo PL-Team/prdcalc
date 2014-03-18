@@ -47,6 +47,7 @@ String::tokens = ->
     "while": "WHILE"
     "do": "DO"
     "call": "CALL"
+    "odd": "ODD"
   
   # Make a token object.
   make = (type, value) ->
