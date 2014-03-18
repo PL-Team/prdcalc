@@ -132,7 +132,7 @@ parse = (input) ->
     (if result.length is 1 then result[0] else result)
 
   block =->
-    result = null
+    result = []
     if lookahead and lookahead.type is "VAR"
         match "VAR"
         right =
