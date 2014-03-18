@@ -124,7 +124,7 @@ parse = (input) ->
     return
 
   statements = ->
-    result = [statement()]
+    result = [block()]
     while lookahead and lookahead.type is ";"
       match ";"
       result.push statement()

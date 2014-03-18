@@ -48,6 +48,7 @@ String::tokens = ->
     "do": "DO"
     "call": "CALL"
     "odd": "ODD"
+    "const": "CONST"
   
   # Make a token object.
   make = (type, value) ->
