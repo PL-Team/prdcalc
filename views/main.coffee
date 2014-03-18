@@ -47,7 +47,6 @@ String::tokens = ->
     "while": "WHILE"
     "do": "DO"
     "call": "CALL"
-    "odd": "ODD"
   
   # Make a token object.
   make = (type, value) ->
@@ -194,24 +193,16 @@ parse = (input) ->
     result
 
   condition = ->
-    result = null
-    if lookahead and lookahead.type is "ODD"
-      match "ODD"
-      right = expression()
-      result =
-        type: "ODD"
-        value: right
-    else
-      left = expression()
-      type = lookahead.value
-      match "COMPARISON"
-      right = expression()
-      result =
-	type: type
-	left: left
-	right: right
+    left = expression()
+    type = lookahead.value
+    match "COMPARISON"
+    right = expression()
+    result =
+      type: type
+      left: left
+      right: right
     result
-    
+
   expression = ->
     result = term()
     if lookahead and lookahead.type is "+"

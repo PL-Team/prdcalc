@@ -194,6 +194,7 @@ parse = (input) ->
     result
 
   condition = ->
+    result = null
     if lookahead and lookahead.type is "ODD"
       match "ODD"
       right = expression()
