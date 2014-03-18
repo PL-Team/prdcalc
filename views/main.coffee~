@@ -1,6 +1,6 @@
 main = ()-> 
   source = original.value
-  try 
+  try
     result = JSON.stringify(parse(source), null, 2)
   catch result
     result = """<div class="error">#{result}</div>"""
@@ -161,7 +161,7 @@ parse = (input) ->
       left = statement()
       match ";"
       match "{"
-      right = statement()
+      right = statements()
       match "}"
       match "END"
       result =
