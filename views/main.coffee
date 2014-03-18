@@ -130,14 +130,25 @@ parse = (input) ->
       result.push statement()
     (if result.length is 1 then result[0] else result)
 
-   
+  block =->
+    result = null
+    if lookahead and lookahead.type is "VAR"
+      match "VAR"
+      right =
+        type: "ID"
+        value: lookahead.value
+      result =
+	     type: "VAR"
+	     right: right
+    else # Error!
+      throw "Syntax Error. in block"
+    (if result.length is 1 then result[0] else result)
   statement = ->
     result = null
     if lookahead and lookahead.type is "ID"
       left =
         type: "ID"
         value: lookahead.value
-
       match "ID"
       match "="
       right = expression()
