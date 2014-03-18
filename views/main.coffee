@@ -35,9 +35,8 @@ String::tokens = ->
     STRING: /('(\\.|[^'])*'|"(\\.|[^"])*")/g
     ONELINECOMMENT: /\/\/.*/g
     MULTIPLELINECOMMENT: /\/[*](.|\n)*?[*]\//g
-    #COMPARISONOPERATOR: /[<>=!]=|[<>]/g
-    COMPARISONOPERATOR: /[<>!]=|[<>]|=/g
-    ONECHAROPERATORS: /(:=|[-+*\/()&|;:,{}[\]])/g
+    COMPARISONOPERATOR: /[<>=!]=|[<>]/g
+    ONECHAROPERATORS: /([-+*\/=()&|;:,{}[\]])/g
 
   RESERVED_WORD = 
     p:    "P"

@@ -37,7 +37,7 @@ String::tokens = ->
     MULTIPLELINECOMMENT: /\/[*](.|\n)*?[*]\//g
     #COMPARISONOPERATOR: /[<>=!]=|[<>]/g
     COMPARISONOPERATOR: /[<>!]=|[<>]|=/g
-    ONECHAROPERATORS: /([-+*\/()&:=|;:,{}[\]])/g
+    ONECHAROPERATORS: /(:=|[-+*\/()&|;:,{}[\]])/g
 
   RESERVED_WORD = 
     p:    "P"
