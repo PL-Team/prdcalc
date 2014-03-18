@@ -3,7 +3,7 @@
 <!-- <img src="/images/st.gif" alt="Syntax Tree"/> 
 -->
   <div id="header" class="header">
-    <p>Load example to parse</p>
+    <p>Ejemplo a parsear</p>
     <div>  
       <textarea autofocus cols = "80" rows = "5" id="original"></textarea>
     </div>
