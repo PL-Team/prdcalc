@@ -151,7 +151,7 @@ parse = (input) ->
       match "IF"
       left = condition()
       match "THEN"
-      right = statement()
+      right = statements()
       result =
         type: "IF"
         left: left
