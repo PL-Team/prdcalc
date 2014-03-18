@@ -13,3 +13,5 @@ Añada:
 * Despliegue la aplicación en Heroku
 * Añada pruebas
 
+Eduardo Jesús Díaz Dioniz
+Francisco José Alderete Gonzalez
