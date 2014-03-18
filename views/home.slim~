@@ -14,10 +14,6 @@ p This website contains a simple example of a predictive parser
         | example2
       button#example3[type="button" onclick="dump('/examples/example3.txt');"]
         | example3
-      button#begin[type="button" onclick="dump('/examples/begin.txt');"]
-        | begin
-      button#while[type="button" onclick="dump('/examples/while.txt');"]
-        | while
       button#exampleerr[type="button" onclick="dump('/examples/example_err.txt');"]
         | example_err
       input#files type="file" 
