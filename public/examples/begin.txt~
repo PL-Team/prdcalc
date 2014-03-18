@@ -1,4 +1,5 @@
-begin a=8;
+begin 
+a=8;
 {
 a=5
 }
