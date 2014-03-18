@@ -49,6 +49,7 @@ String::tokens = ->
     "call": "CALL"
     "odd": "ODD"
     "const": "CONST"
+    "var": "VAR"
   
   # Make a token object.
   make = (type, value) ->
@@ -135,11 +136,12 @@ parse = (input) ->
     if lookahead and lookahead.type is "VAR"
       match "VAR"
       right =
-        type: "ID"
+        type: "VAR"
         value: lookahead.value
+      match "ID"
       result =
-	     type: "VAR"
-	     right: right
+        type: "VAR"
+        value: right
     else # Error!
       throw "Syntax Error. in block"
     (if result.length is 1 then result[0] else result)
