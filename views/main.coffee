@@ -159,7 +159,6 @@ parse = (input) ->
     else if lookahead and lookahead.type is "BEGIN"
       match "BEGIN"
       left = statements()
-      match ";"
       match "{"
       right = statements()
       match "}"
