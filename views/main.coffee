@@ -142,9 +142,17 @@ parse = (input) ->
       result =
         type: "VAR"
         value: right
+      while lookahead and lookahead.type is ","
+	match ","
+	aux =
+	  type: "VAR"
+	  value: lookahead.value
+	match "ID"
+	result.push aux
     else # Error!
       throw "Syntax Error. in block"
     (if result.length is 1 then result[0] else result)
+    
   statement = ->
     result = null
     if lookahead and lookahead.type is "ID"

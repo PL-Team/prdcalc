@@ -287,7 +287,7 @@ parse = (input) ->
         " near '" + input.substr(lookahead.from) + "'"
     result
 
-  tree = statements(input)
+  tree = block(input)
   if lookahead?
     throw "Syntax Error parsing statements. " + 
       "Expected 'end of input' and found '" + 
