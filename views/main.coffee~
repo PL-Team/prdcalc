@@ -132,16 +132,22 @@ parse = (input) ->
     (if result.length is 1 then result[0] else result)
 
   block =->
+    if lookahead and lookahead.type is "CONST"
+        match "CONST"
+        result = [constant()]
+        while lookahead and lookahead.type is ","
+            match ","
+            result.push constant()
+            
     if lookahead and lookahead.type is "VAR"
         match "VAR"
         result = [variable()]
         while lookahead and lookahead.type is ","
             match ","
-	    result.push variable()
+            result.push variable()
     else # Error!
       throw "Syntax Error. in block"
     (if result.length is 1 then result[0] else result)
-    
     
   variable= ->
     result =
@@ -149,7 +155,6 @@ parse = (input) ->
       value: lookahead.value
     match "ID"
     result
-    
     
   statement = ->
     result = null
