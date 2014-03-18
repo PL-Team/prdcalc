@@ -194,6 +194,7 @@ parse = (input) ->
     result
 
   condition = ->
+    result = null
     if lookahead and lookahead.type is "ODD"
       match "ODD"
       right = expression()
@@ -210,7 +211,7 @@ parse = (input) ->
 	left: left
 	right: right
     result
-
+    
   expression = ->
     result = term()
     if lookahead and lookahead.type is "+"
