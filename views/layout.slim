@@ -3,17 +3,13 @@ html lang="en"
   head
     title== @title
     meta charset="utf-8"
-    == css :styles
-    link rel="icon" type="image/jpg" href="images/favicon.jpg" 
+    == css :main
     link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" media="screen, projection" rel="stylesheet"
     script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
     script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"
     script src="/javascripts/main.js"
+	script src="js/jquery.js" type="text/javascript" 
+	script src="js/menu.js" type="text/javascript" 
+	script src="js/drag.js" type="text/javascript" 
   body
-    header
-      h1 Predictive Recursive Descent Parser
-      == slim :nav
-    section
       == yield
-    /!footer
-        a href="/" back to main

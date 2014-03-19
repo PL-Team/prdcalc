@@ -1,14 +1,15 @@
-main = ()-> 
-  source = original.value
+main = ()->
+  source = OUTPUT.value
+  start()
   try
     result = JSON.stringify(parse(source), null, 2)
-  catch result
-    result = """<div class="error">#{result}</div>"""
+  catch _error
+    result = _error
+    result = "<div class=\"error\">" + result + "</div>"
+  OUTPUT.value = result
 
-  OUTPUT.innerHTML = result
-
-window.onload = ()-> 
-  PARSE.onclick = main
+#window.onload = ()-> 
+#  menu_compilar.onclick = main
 
 Object.constructor::error = (message, t) ->
   t = t or this

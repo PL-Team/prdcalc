@@ -6,23 +6,14 @@ require 'sass'
 require 'v8'
 require 'coffee-script'
 
-#configure do
-#  set :static_cache_control, [:public, :no_cache, :no_store, :must_revalidate]
-#end
-
 before do
   set_title
 end
 
 helpers do
   def css(*stylesheets)
-    stylesheets.map do |stylesheet| 
-      %Q{
-        <link href="/#{stylesheet}.css" 
-              media="screen, projection" 
-              rel="stylesheet" 
-        />
-      }
+    stylesheets.map do |stylesheet|
+      %Q{<link href="/#{stylesheet}.css" media="screen, projection" rel="stylesheet"/>}
     end.join
   end
   
@@ -35,11 +26,11 @@ helpers do
   end
 end
 
-get('/styles.css'){ scss :styles }
+get('/main.css'){ scss :main }
 get('/javascripts/main.js'){ coffee :main }
 
 get '/' do
-  slim :home
+  slim :index
 end
 
 get '/grammar' do
