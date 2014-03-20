@@ -1,15 +1,15 @@
 main = ()->
-  source = OUTPUT.value
-  start()
-  try
-    result = JSON.stringify(parse(source), null, 2)
-  catch _error
-    result = _error
-    result = "<div class=\"error\">" + result + "</div>"
-  OUTPUT.value = result
+  if menu_compilar.className is ""
+    source = OUTPUT.value
+    try
+      result = JSON.stringify(parse(source), null, 2)
+    catch _error
+      result = _error
+      result = "+++++++ ERROR: " + result + "+++++"
+    OUTPUT.value = result
 
-#window.onload = ()-> 
-#  menu_compilar.onclick = main
+window.onload = ()->
+  menu_compilar.onclick = main
 
 Object.constructor::error = (message, t) ->
   t = t or this
@@ -51,6 +51,7 @@ String::tokens = ->
     "odd": "ODD"
     "const": "CONST"
     "var": "VAR"
+    "procedure": "PROCEDURE"
   
   # Make a token object.
   make = (type, value) ->
@@ -132,6 +133,13 @@ parse = (input) ->
       result.push statement()
     (if result.length is 1 then result[0] else result)
 
+  blocks = ->
+    result = [block()]
+    while lookahead and lookahead.type is ";"
+      match ";"
+      result.push block()
+    (if result.length is 1 then result[0] else result)
+
   block =->
     if lookahead and lookahead.type is "CONST"
         match "CONST"
@@ -140,14 +148,33 @@ parse = (input) ->
             match ","
             result.push constant()
             
-    if lookahead and lookahead.type is "VAR"
+    else if lookahead and lookahead.type is "VAR"
         match "VAR"
         result = [variable()]
         while lookahead and lookahead.type is ","
             match ","
             result.push variable()
-    else # Error!
-      throw "Syntax Error. in block"
+    else if lookahead and lookahead.type is "PROCEDURE"
+        match "PROCEDURE"
+        left =
+          type: "ID"
+          value: lookahead.value
+        match "ID"
+        right = blocks()
+        result =
+          type: "PROCEDURE"
+          left: left
+          right: right
+        result
+    else if lookahead and lookahead.type is "BEGIN"
+        match "BEGIN"
+        value = statements()
+        match "END"
+        result =
+          type: "BEGIN"
+          value: value
+    else
+       result = statements()
     (if result.length is 1 then result[0] else result)
     
   variable= ->
@@ -156,13 +183,23 @@ parse = (input) ->
       value: lookahead.value
     match "ID"
     result
+	
   constant= ->
-    result =
-      type: "VAR"
+    left =
+      type: "ID"
       value: lookahead.value
     match "ID"
+    match "="
+    right =
+      type: "NUM"
+      value: lookahead.value
+    match "NUM"
+    result =
+      type: "CONST"
+      left: left
+      right: right
     result
-    
+	
   statement = ->
     result = null
     if lookahead and lookahead.type is "ID"
@@ -200,22 +237,13 @@ parse = (input) ->
         type: "IF"
         left: left
         right: right
-    else if lookahead and lookahead.type is "BEGIN"
-      match "BEGIN"
-      left = statements()
-      match "{"
-      right = statements()
-      match "}"
-      match "END"
-      result =
-        type: "BEGIN"
-        left: left
-        right: right
     else if lookahead and lookahead.type is "WHILE"
       match "WHILE"
       left = condition()
       match "DO"
+      match "BEGIN"
       right = statement()
+      match "END"
       result =
         type: "WHILE"
         left: left
@@ -305,7 +333,7 @@ parse = (input) ->
         " near '" + input.substr(lookahead.from) + "'"
     result
 
-  tree = block(input)
+  tree = blocks(input)
   if lookahead?
     throw "Syntax Error parsing statements. " + 
       "Expected 'end of input' and found '" + 

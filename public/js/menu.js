@@ -15,8 +15,7 @@ var menu = $("#"+menuId);
 		setTimeout(function() {
 			load.style.display = "none";
 			//block compile
-			alert(main);
-			main.call(this);
+			
 			menu_n.className="";
 			menu_c.className="disabled";
 			out.readOnly = true;
@@ -63,7 +62,6 @@ $(document).bind("contextmenu", function(e){
 					new_tree();
 					break;
 				case "menu_compilar":
-					//no hacer nada , lo hace main.coffee
 					start();
 					break;
 				case "menu_link":
