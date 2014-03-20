@@ -30,14 +30,16 @@ String::tokens = ->
   m = undefined # Matching
   result = [] # An array to hold the results.
   tokens =
-    WHITES: /\s+/g
-    ID: /[a-zA-Z_]\w*/g
-    NUM: /\b\d+(\.\d*)?([eE][+-]?\d+)?\b/g
-    STRING: /('(\\.|[^'])*'|"(\\.|[^"])*")/g
-    ONELINECOMMENT: /\/\/.*/g
-    MULTIPLELINECOMMENT: /\/[*](.|\n)*?[*]\//g
+    ADDSUB : /[+-]/g
     COMPARISONOPERATOR: /[<>=!]=|[<>]/g
+    ID: /[a-zA-Z_]\w*/g
+    MULTIPLELINECOMMENT: /\/[*](.|\n)*?[*]\//g
+    MULTDIV : /[*\/]/g
+    NUM: /\b\d+(\.\d*)?([eE][+-]?\d+)?\b/g
     ONECHAROPERATORS: /([-+*\/=()&|;:,{}[\]])/g
+    ONELINECOMMENT: /\/\/.*/g
+    STRING: /('(\\.|[^'])*'|"(\\.|[^"])*")/g
+    WHITES: /\s+/g
 
   RESERVED_WORD = 
     p:    "P"
@@ -102,7 +104,13 @@ String::tokens = ->
     else if m = tokens.STRING.bexec(this)
       result.push make("STRING", 
                         getTok().replace(/^["']|["']$/g, ""))
+    # add
+    else if m = tokens.ADDSUB.bexec(this)
+      result.push make("ADDSUB", getTok())
     
+    # mult
+    else if m = tokens.MULTDIV.bexec(this)
+      result.push make("MULTDIV", getTok())
     # comparison operator
     else if m = tokens.COMPARISONOPERATOR.bexec(this)
       result.push make("COMPARISON", getTok())
@@ -275,36 +283,24 @@ parse = (input) ->
     
   expression = ->
     result = term()
-    if lookahead and lookahead.type is "+"
-      match "+"
-      right = expression()
+    while lookahead and lookahead.type is "ADDSUB"
+      type = lookahead.value
+      match "ADDSUB"
+      right = term()
       result =
-        type: "+"
-        left: result
-        right: right
-    else if lookahead and lookahead.type is "-"
-      match "-"
-      right = expression()
-      result =
-        type: "-"
+        type: type
         left: result
         right: right
     result
 
   term = ->
     result = factor()
-    if lookahead and lookahead.type is "*"
-      match "*"
-      right = term()
+    while lookahead and lookahead.type is "MULTDIV"
+      type = lookahead.value
+      match "MULTDIV"
+      right = factor()
       result =
-        type: "*"
-        left: result
-        right: right
-    else if lookahead and lookahead.type is "/"
-      match "/"
-      right = term()
-      result =
-        type: "/"
+        type: type
         left: result
         right: right
     result

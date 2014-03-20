@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	
+		var out = document.getElementById("OUTPUT");
+			out.value = "procedure proceso\n var a,b,z; \n begin\n   a = x;\n   b = y;\n  z = 0;\n   while b > 0 do begin\n    if odd b then z = z + a;\n     a = 2 * a;\n     b = b / 2\n    end\n   end";
 //variables de control
 var menuId = "menu";
 var menu = $("#"+menuId);
@@ -15,7 +16,6 @@ var menu = $("#"+menuId);
 		setTimeout(function() {
 			load.style.display = "none";
 			//block compile
-			
 			menu_n.className="";
 			menu_c.className="disabled";
 			out.readOnly = true;
@@ -62,6 +62,7 @@ $(document).bind("contextmenu", function(e){
 					new_tree();
 					break;
 				case "menu_compilar":
+					//no hacer nada , lo hace main.coffee
 					start();
 					break;
 				case "menu_link":

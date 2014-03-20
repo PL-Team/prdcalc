@@ -1,5 +1,5 @@
- var dropZone = document.getElementById('drop_zone')
-var output = document.getElementById("outputText");
+var dropZone = document.getElementById('drop_zone')
+var output = document.getElementById("OUTPUT");
 
 function processFiles(files) {
 		var file = files[0];
@@ -10,18 +10,14 @@ function processFiles(files) {
 		reader.readAsText(file);
 }
 function handleFileSelect(evt) {
+	var menu = document.getElementById("menu_compilar");
 	handleDragVisualOFF(evt);
     evt.stopPropagation();
     evt.preventDefault();
     var files = evt.dataTransfer.files;
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate.toLocaleDateString(), '</li>');
-                  processFiles(files);
-    }
-    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+	if(menu.className==""){
+		processFiles(files);
+	}
 }
 function handleDragOver(evt) {
     evt.stopPropagation();
