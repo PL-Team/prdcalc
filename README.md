@@ -1,5 +1,9 @@
 # Práctica: Analizador Descendente Predictivo Recursivo
 
+## Autores:
+* Eduardo Jesús Díaz Dioniz
+* Francisco José Alderete Gonzalez
+
 * [Deployment in Heroku](http://planalizador.herokuapp.com/)
 * [Repositorio](https://github.com/PL-Team/prdcalc)
 
@@ -21,6 +25,3 @@
 * Sass
 * Slim
 
-## Autores:
-* Eduardo Jesús Díaz Dioniz
-* Francisco José Alderete Gonzalez
