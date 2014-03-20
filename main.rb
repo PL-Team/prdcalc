@@ -33,10 +33,6 @@ get '/' do
   slim :index
 end
 
-get '/grammar' do
-  slim :grammar
-end
-
 not_found do
   slim :not_found
 end
