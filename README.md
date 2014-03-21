@@ -1,4 +1,4 @@
- # Práctica: Analizador Descendente Predictivo Recursivo
+ ## Práctica: Analizador Descendente Predictivo Recursivo
   
  * [Deployment in Heroku](http://planalizador.herokuapp.com/)
  * [Repositorio](https://github.com/PL-Team/prdcalc)
