@@ -65,14 +65,11 @@ $(document).bind("contextmenu", function(e){
 					//no hacer nada , lo hace main.coffee
 					start();
 					break;
-				case "menu_link":
-					alert("test");
+				case "menu_link_t":
+					window.location.href = "test.html";
 					break;
-				case "menu_link":
-					alert("test");
-					break;
-				case "menu_link":
-					alert("test");
+				case "menu_link_g":
+					window.location.href = "grammar.html";
 					break;
 				//links de la página
 				case "menu_plus":

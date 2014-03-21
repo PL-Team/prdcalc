@@ -1,29 +1,17 @@
 # Práctica: Analizador Descendente Predictivo Recursivo
 
-## Autores:
-* Eduardo Jesús Díaz Dioniz
-* Francisco José Alderete Gonzalez
+* [Deployment in Heroku](http://predictiveparser.herokuapp.com/)
 
-## Links:
+## Tareas
 
-* [Deployment in Heroku](http://planalizador.herokuapp.com/)
-* [Repositorio](https://github.com/PL-Team/prdcalc)
+Añada:
 
-## Descripción
-  Prácrica para la asignatura Procesadores de lenguaje, en la cual se hace un análisis léxico del lenguaje Pl/0 generando un árbol.
-  
-  Para el correcto funcionamiento de la aplicación se deberá escribir el codigo Pl/0 dentro del text area o arrastrar en la ventana un fichero con la descripcón del programa, posteriormente para compilar le daremos "click" derecho y pulsaremos "compilar". Esto generará el árbol en un text area de solo lectura en el que se podra compiar el codigo. Em caso de seguir queriendo procesar mas programas deberá dar "click" derecho y pulsar la opción "nuevo".
-  
-  En el mismo menu contextual se incluye links hacia las pruebas y la gramatica utilizada.
-  
-  [No olvides darnos un +1 en el menu contextual o en este mismo link](#)
+* Extienda y modifique el analizador para que acepte el lenguaje descrito por la gramática EBNF del lenguaje PL/0 que se describe en la entrada de la Wikipedia Recursive descent parser. Procure que el arbol generado refleje la asociatividad correcta para las diferencias y las divisiones. No es necesario que el lenguaje sea exactamente igual pero debería ser parecido. Tener los mismos constructos.
+* Use CoffeeScript para escribir el código (fichero views/main.coffee)
+* Use slim para las vistas
+* Usa Sass para las hojas de estilo
+* Despliegue la aplicación en Heroku
+* Añada pruebas
 
-
-## Recursos:
-* Sinatra 
-* CoffeeScript
-* Heroku
-* JavaScript
-* Sass
-* Slim
-
+Eduardo Jesús Díaz Dioniz
+Francisco José Alderete Gonzalez
